@@ -10,22 +10,16 @@ struct Array {
     T elements[N];
 
     T &operator[](size_t _pos) noexcept {
+        if (_pos >= N) {
+            throw std::out_of_range("invalid position");
+        }
         return elements[_pos];
     }
 
     T const &operator[](size_t _pos) const noexcept {
-        return elements[_pos];
-    }
-
-    T &at(size_t _pos) {
-        if (_pos >= N) [[__unlikely__]]
-            throw std::out_of_range("array::at");
-        return elements[_pos];
-    }
-
-    T const &at(size_t _pos) const {
-        if (_pos >= N) [[__unlikely__]]
-            throw std::out_of_range("array::at");
+        if (_pos >= N) {
+            throw std::out_of_range("invalid position");
+        }
         return elements[_pos];
     }
 
@@ -51,23 +45,27 @@ struct Array {
         return elements[N - 1];
     }
 
-    T const *data() {
+    T const *data() const noexcept {
         return elements;
     }
 
-    T const *begin() const {
+    T *data() noexcept {
         return elements;
     }
 
-    T *begin() {
+    T const *begin() const noexcept {
         return elements;
     }
 
-    T const *end() const {
+    T *begin() noexcept {
+        return elements;
+    }
+
+    T const *end() const noexcept {
         return elements + N;
     }
 
-    T *end() {
+    T *end() noexcept {
         return elements + N;
     }
 };
