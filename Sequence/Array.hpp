@@ -4,42 +4,66 @@
 
 #define MAXN 1024
 
-using uint = unsigned int;
+#include <algorithm> // std::equal
+#include <cstddef>   // size_t
+#include <stdexcept> // std::out_of_range
 
-template <typename T, uint N>
+template <typename T, size_t N>
 struct Array {
-    T *pdata;
-    uint base;
-    uint size;
+    T elements[N];
 
-    Array(uint size_ = 0, uint base_ = 0) : pdata(new T[N]), base(base_), size(size_) {
-        static_assert(0 < N && N <= MAXN);
+    T &operator[](size_t _pos) noexcept {
+        return elements[_pos];
     }
 
-    Array(const Array<T, N> &Array_) : pdata(new T[N]), base(Array_.base), size(Array_.size) {
-        for (uint i = 0; i < size; i++) {
-            pdata[i] = Array_.pdata[i];
+    T const &operator[](size_t _pos) const noexcept {
+        return elements[_pos];
+    }
+
+    T &at(size_t _pos) {
+        if (_pos >= N) [[__unlikely__]]
+            throw std::out_of_range("array::at");
+        return elements[_pos];
+    }
+
+    T const &at(size_t _pos) const {
+        if (_pos >= N) [[__unlikely__]]
+            throw std::out_of_range("array::at");
+        return elements[_pos];
+    }
+
+    void fill(T const &_val) noexcept {
+        for (size_t i = 0; i < N; i++) {
+            elements[i] = _val;
         }
     }
 
-    ~Array() {
-        delete[] pdata;
-        pdata = nullptr;
+    T &front() noexcept {
+        return elements[0];
     }
 
-    T operator[](uint x) {
+    T const &front() const noexcept {
+        return elements[0];
     }
 
-    T *data() const {
-        return this->pdata;
+    T &back() noexcept {
+        return elements[N - 1];
     }
 
-    uint getSize() {
-        return this->size;
+    T const &back() const noexcept {
+        return elements[N - 1];
     }
 
-    uint getBase() {
-        return this->base;
+    T const *data() {
+        return elements;
+    }
+
+    T const *begin() {
+        return elements;
+    }
+
+    T const *end() {
+        return elements + N;
     }
 };
 
