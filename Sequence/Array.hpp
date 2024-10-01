@@ -4,27 +4,42 @@
 
 #define MAXN 1024
 
-template <typename T>
-class Array {
-protected:
+using uint = unsigned int;
+
+template <typename T, uint N>
+struct Array {
     T *pdata;
-    int base;
-    int size;
+    uint base;
+    uint size;
 
-public:
-    Array(int n_ = 0, int m_ = 0) : pdata(new T[MAXN]),
-                                    base(m_),
-                                    size(n_) {}
+    Array(uint size_ = 0, uint base_ = 0) : pdata(new T[N]), base(base_), size(size_) {
+        static_assert(0 < N && N <= MAXN);
+    }
 
-    Array(const Array<T> &Array_) : pdata(new T[MAXN]), base(Array_.base), size(Array_.size) {
-        for (int i = 0; i < size; i++) {
+    Array(const Array<T, N> &Array_) : pdata(new T[N]), base(Array_.base), size(Array_.size) {
+        for (uint i = 0; i < size; i++) {
             pdata[i] = Array_.pdata[i];
         }
     }
-    
+
     ~Array() {
         delete[] pdata;
         pdata = nullptr;
+    }
+
+    T operator[](uint x) {
+    }
+
+    T *data() const {
+        return this->pdata;
+    }
+
+    uint getSize() {
+        return this->size;
+    }
+
+    uint getBase() {
+        return this->base;
     }
 };
 
