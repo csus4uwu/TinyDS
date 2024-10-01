@@ -1,10 +1,7 @@
 // TODO
 #ifndef Array_H
-#define Array_H
+#define Array_H 1
 
-#define MAXN 1024
-
-#include <algorithm> // std::equal
 #include <cstddef>   // size_t
 #include <stdexcept> // std::out_of_range
 
@@ -58,11 +55,19 @@ struct Array {
         return elements;
     }
 
-    T const *begin() {
+    T const *begin() const {
         return elements;
     }
 
-    T const *end() {
+    T *begin() {
+        return elements;
+    }
+
+    T const *end() const {
+        return elements + N;
+    }
+
+    T *end() {
         return elements + N;
     }
 };
