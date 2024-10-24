@@ -64,14 +64,17 @@ void test(Which which) {
         endl(cout);
 
     } else if (which == _Stack) {
-
+        // Stack test0
+        Stack<int> a;
+        a.push(100);
+        cout << a.top() << endl;
     }
 }
 
 int main() {
     cin.tie(nullptr)->sync_with_stdio(false);
 
-    test(_Array);
+    test(_Stack);
 
     return 0;
 }
