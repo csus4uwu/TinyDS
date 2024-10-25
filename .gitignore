@@ -1,4 +1,5 @@
 .vscode
 *.exe
+*.cpp
 
 _test.cpp
