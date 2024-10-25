@@ -10,18 +10,18 @@ constexpr size_t MAX_SIZE = 1e7;
 template <typename T>
 struct Stack {
     Stack() {
-        arr = new T[MAX_SIZE];
+        elements = new T[MAX_SIZE];
     }
     ~Stack() {
-        delete[] arr;
-        arr = nullptr;
+        delete[] elements;
+        elements = nullptr;
     }
 
     T &top() {
-        return arr[back - 1];
+        return elements[back - 1];
     }
     T const &top() const {
-        return arr[back - 1];
+        return elements[back - 1];
     }
     void pop() {
         if (back == 0) {
@@ -30,7 +30,7 @@ struct Stack {
         back--;
     }
     void push(const T &_val) {
-        arr[back] = _val;
+        elements[back] = _val;
         back++;
     }
     size_t size() {
@@ -41,7 +41,7 @@ struct Stack {
     }
 
 private:
-    T *arr;
+    T *elements;
     size_t back;
 };
 
