@@ -11,6 +11,10 @@ struct CArray {
     CArray() {
         elements = new T[MAX_SIZE];
     }
+    CArray(T const &_init) {
+        elements = new T[MAX_SIZE];
+        fill(_init);
+    }
     ~CArray() {
         delete[] elements;
         elements = nullptr;
