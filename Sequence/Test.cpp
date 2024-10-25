@@ -74,7 +74,7 @@ void test(Which which) {
 int main() {
     cin.tie(nullptr)->sync_with_stdio(false);
 
-    test(_Stack);
+    test(_Array);
 
     return 0;
 }
