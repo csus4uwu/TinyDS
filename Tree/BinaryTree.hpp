@@ -11,3 +11,12 @@ struct Node {
 
     ~Node() {}
 };
+
+template <typename T>
+struct BinaryTree {
+    BinaryTree() {}
+    ~BinaryTree() {}
+
+private:
+    int Size;
+};
