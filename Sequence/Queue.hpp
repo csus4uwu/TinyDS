@@ -1,4 +1,3 @@
-// TODO
 #ifndef Queue_H
 #define Queue_H 1
 

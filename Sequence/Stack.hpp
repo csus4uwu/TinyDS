@@ -1,4 +1,3 @@
-// TODO
 #ifndef Stack_H
 #define Stack_H 1
 

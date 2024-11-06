@@ -1,4 +1,3 @@
-// TODO
 #ifndef Array_H
 #define Array_H 1
 
