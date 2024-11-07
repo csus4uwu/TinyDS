@@ -1,5 +1,5 @@
 // TODO
-#include <iostream>
+#include <cstddef>
 
 template <typename T>
 struct Node {
@@ -17,6 +17,22 @@ struct BinaryTree {
     BinaryTree() {}
     ~BinaryTree() {}
 
+    void insert() {
+
+    }
+    void find() {
+
+    }
+    void erase() {
+        
+    }
+
+    size_t size() {
+        return Size();
+    }
+    bool empty() {
+        return size() == 0;
+    }
 private:
-    int Size;
+    size_t Size;
 };
