@@ -20,11 +20,14 @@ struct BinaryTree {
     void insert() {
 
     }
-    void find() {
+    void find(const T &_x) {
 
     }
     void erase() {
-        
+
+    }
+    bool contains(const T &_x) {
+        return find(_x) != nullptr;
     }
 
     size_t size() {
