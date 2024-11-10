@@ -12,14 +12,39 @@ struct LazySegmentTree {
         init(n_, v_);
     }
     template <class T>
-    LazySegmentTree(std::vector<T> init_) {
+    LazySegmentTree(std::vector<T> const &init_) {
         init(init_);
     }
+
     void init(size_t n_, Info v_ = Info()) {
         init(std::vector(n_, v_));
     }
+    void modify(size_t p, const Info &v) {
+        modify(1, 0, n, p, v);
+    }
+    Info rangeQuery(size_t l, size_t r) {
+        return rangeQuery(1, 0, n, l, r);
+    }
+    void rangeApply(size_t l, size_t r, const Tag &v) {
+        return rangeApply(1, 0, n, l, r, v);
+    }
+
+    template <class F>
+    size_t findFirst(size_t l, size_t r, F &&pred) {
+        return findFirst(1, 0, n, l, r, pred);
+    }
+    template <class F>
+    size_t findLast(size_t l, size_t r, F &&pred) {
+        return findLast(1, 0, n, l, r, pred);
+    }
+
+private:
+    size_t n;
+    std::vector<Info> info;
+    std::vector<Tag> tag;
+
     template <class T>
-    void init(std::vector<T> init_) {
+    void init(std::vector<T> const &init_) {
         n = init_.size();
         info.assign(4 << std::__lg(n), Info());
         tag.assign(4 << std::__lg(n), Tag());
@@ -61,9 +86,6 @@ struct LazySegmentTree {
         }
         pull(p);
     }
-    void modify(size_t p, const Info &v) {
-        modify(1, 0, n, p, v);
-    }
     Info rangeQuery(size_t p, size_t l, size_t r, size_t x, size_t y) {
         if (l >= y || r <= x) {
             return Info();
@@ -74,9 +96,6 @@ struct LazySegmentTree {
         size_t m = (l + r) / 2;
         push(p);
         return rangeQuery(2 * p, l, m, x, y) + rangeQuery(2 * p + 1, m, r, x, y);
-    }
-    Info rangeQuery(size_t l, size_t r) {
-        return rangeQuery(1, 0, n, l, r);
     }
     void rangeApply(size_t p, size_t l, size_t r, size_t x, size_t y, const Tag &v) {
         if (l >= y || r <= x) {
@@ -92,10 +111,6 @@ struct LazySegmentTree {
         rangeApply(2 * p + 1, m, r, x, y, v);
         pull(p);
     }
-    void rangeApply(size_t l, size_t r, const Tag &v) {
-        return rangeApply(1, 0, n, l, r, v);
-    }
-
     template <class F>
     size_t findFirst(size_t p, size_t l, size_t r, size_t x, size_t y, F &&pred) {
         if (l >= y || r <= x) {
@@ -116,10 +131,6 @@ struct LazySegmentTree {
         return res;
     }
     template <class F>
-    size_t findFirst(size_t l, size_t r, F &&pred) {
-        return findFirst(1, 0, n, l, r, pred);
-    }
-    template <class F>
     size_t findLast(size_t p, size_t l, size_t r, size_t x, size_t y, F &&pred) {
         if (l >= y || r <= x) {
             return -1;
@@ -138,14 +149,6 @@ struct LazySegmentTree {
         }
         return res;
     }
-    template <class F>
-    size_t findLast(size_t l, size_t r, F &&pred) {
-        return findLast(1, 0, n, l, r, pred);
-    }
-private:
-    size_t n;
-    std::vector<Info> info;
-    std::vector<Tag> tag;
 };
 
 #endif
