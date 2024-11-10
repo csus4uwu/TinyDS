@@ -1,5 +1,9 @@
 // TODO
+#ifndef BinaryTree_H
+#define BinaryTree_H 1
+
 #include <cstddef>
+#include <map>
 
 template <typename T>
 struct Node {
@@ -17,13 +21,15 @@ struct BinaryTree {
     BinaryTree() {}
     ~BinaryTree() {}
 
-    void insert() {
-
+    auto insert() {
+        bool success = true;
+        Node now = new Node<T>;
+        return std::make_pair(now, success);
     }
     void find(const T &_x) {
-
+        Node res = new Node<T>;
     }
-    void erase() {
+    void erase(const T &_x) {
 
     }
     bool contains(const T &_x) {
@@ -31,11 +37,14 @@ struct BinaryTree {
     }
 
     size_t size() {
-        return Size();
+        return n;
     }
     bool empty() {
         return size() == 0;
     }
 private:
-    size_t Size;
+    size_t n;
+    T *root;
 };
+
+#endif
