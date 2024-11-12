@@ -1,5 +1,9 @@
 // TODO
+#ifndef LinkedList_H
+#define LinkedList_H 1
+
 #include <iostream>
+#include <cstddef>
 
 template <typename T>
 struct Node {
@@ -128,3 +132,5 @@ struct LinkedList {
         return *this;
     }
 };
+
+#endif
