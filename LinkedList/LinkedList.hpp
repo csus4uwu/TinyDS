@@ -2,8 +2,10 @@
 #ifndef LinkedList_H
 #define LinkedList_H 1
 
-#include <iostream>
 #include <cstddef>
+#include <iostream>
+#include <stdexcept>
+#include <vector>
 
 template <typename T>
 struct Node {
@@ -12,20 +14,15 @@ struct Node {
     Node<T> *next;
 
     Node(const T &_val = {}) : val(_val), prev(nullptr), next(nullptr) {}
-
-    ~Node() {}
+    ~Node() {
+        prev = nullptr;
+        next = nullptr;
+    }
 };
 
 template <typename T>
 struct LinkedList {
-    Node<T> *head;
-    Node<T> *tail;
-
-    LinkedList() {
-        init();
-    }
-
-    LinkedList(const LinkedList &_init) {
+    LinkedList(const LinkedList &_init = {}) {
         init(_init);
     }
 
@@ -55,7 +52,6 @@ struct LinkedList {
         _pos->prev->next = now;
         _pos->prev = now;
     }
-
     void insert(Node<T> *_pos, Node<T> *_node) {
         _now->next = _pos;
         _now->prev = _pos->prev;
@@ -63,40 +59,37 @@ struct LinkedList {
         _pos->prev->next = _now;
         _pos->prev = _now;
     }
-
     void push_back(const T &_val) {
         insert(tail, _val);
     }
-    
     void push_back(const Node<T> &_node) {
         insert(tail, &_node);
     }
-
     void push_front(const T &_val) {
         insert(head->next, _val);
     }
-
     void push_front(const Node<T> &_node) {
         insert(head->next, now);
     }
-
     void erase(Node<T> *_pos) {
-        if (empty()) {
-            std::cerr << "This linkedList is empty!" << std::endl;
-            return;
+        if (not empty()) {
+
+        } else {
+            throw std::out_of_range("the ")
         }
-        _pos->next->prev = _pos->prev;
-        _pos->prev->next = _pos->next;
     }
-
+    void erase(size_t _pos) {
+        if (empty()) {
+        }
+        for (int i = 0; i < x; i++) {
+        }
+    }
     void pop_back() {
-        erase(tail->prev);
+        erase(0);
     }
-
     void pop_front() {
         erase(head->next);
     }
-
     ~LinkedList() {
         this->clear();
         delete head;
@@ -131,6 +124,11 @@ struct LinkedList {
 
         return *this;
     }
+    
+
+private:
+    Node<T> *head;
+    Node<T> *tail;
 };
 
 #endif
