@@ -27,7 +27,9 @@ struct BinaryTree {
         return std::make_pair(now, success);
     }
     void find(const T &_x) {
-        Node res = new Node<T>;
+        Node<T> res = new Node;
+        res.val = _x;
+        
     }
     void erase(const T &_x) {
 
