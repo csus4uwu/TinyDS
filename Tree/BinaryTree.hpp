@@ -26,10 +26,13 @@ struct BinaryTree {
         Node now = new Node<T>;
         return std::make_pair(now, success);
     }
-    void find(const T &_x) {
+    T find(const T &_x) {
         Node<T> res = new Node;
-        res.val = _x;
-        
+
+        while (res != nullptr) {
+
+        }
+        return {};
     }
     void erase(const T &_x) {
 
