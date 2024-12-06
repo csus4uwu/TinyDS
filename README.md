@@ -1,2 +1,6 @@
 # TinyDS
-Algorithms and Data Structures with C++
+包含顺序、链表、图和树等数据结构，以及一些经典算法（例如二分），正在建设中。
+
+在项目完成度较高的时候，会开始写文档。
+
+欢迎 PR 或者提 issue。
